@@ -35,8 +35,8 @@ class Settings extends Base {
 		if ($settings /*&&
 			($errors = $validator->validate($settings)) === true*/) {
 			//$settings              = $validator->filter($settings);
-			$results               = \Vvveb\set_settings('dicebear', $settings);
-			//CacheManager::delete('components');
+			$results               = \Vvveb\setMultiSetting('dicebear', $settings);
+			//CacheManager::delete('component');
 			CacheManager::delete();
 			$this->view->success[] = __('Settings saved!');
 		} else {
@@ -47,6 +47,6 @@ class Settings extends Base {
 	}
 
 	function index() {
-		$this->view->styles = ['adventurer-neutral','adventurer','avataaars-neutral','avataaars','big-ears-neutral','big-ears','big-smile','bottts-neutral','bottts','collection','converter','croodles-neutral','croodles','fun-emoji','icons','identicon','initials','lorelei-neutral','lorelei','micah','miniavs','notionists-neutral','notionists','open-peeps','personas','pixel-art-neutral','pixel-art','rings','shapes','thumbs'];
+		$this->view->styles = ['adventurer-neutral', 'adventurer', 'avataaars-neutral', 'avataaars', 'big-ears-neutral', 'big-ears', 'big-smile', 'bottts-neutral', 'bottts', 'collection', 'converter', 'croodles-neutral', 'croodles', 'fun-emoji', 'icons', 'identicon', 'initials', 'lorelei-neutral', 'lorelei', 'micah', 'miniavs', 'notionists-neutral', 'notionists', 'open-peeps', 'personas', 'pixel-art-neutral', 'pixel-art', 'rings', 'shapes', 'thumbs'];
 	}
 }

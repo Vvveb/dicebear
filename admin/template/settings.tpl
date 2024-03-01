@@ -2,25 +2,25 @@ import(common.tpl)
 
 .settings input[type="text"]|value = <?php 
 	$_setting = '@@__name:\[(.*)\]__@@';
-	echo $_POST['dicebear'][$_setting]  ?? Vvveb\get_setting('dicebear', $_setting, null) ?? '@@__value__@@';
+	echo $_POST['settings'][$_setting] ?? Vvveb\getSetting('dicebear', $_setting, null) ?? '@@__value__@@';
 	//name="dicebear[setting-name] > get only setting-name
 ?>
 
 .settings input[type="number"]|value = <?php 
 	$_setting = '@@__name:\[(.*)\]__@@';
-	echo $_POST['dicebear'][$_setting]  ?? Vvveb\get_setting('dicebear',$_setting, null) ?? '@@__value__@@';
+	echo $_POST['settings'][$_setting] ?? Vvveb\getSetting('dicebear',$_setting, null) ?? '@@__value__@@';
 	//name="dicebear[setting-name] > get only setting-name
 ?>
 
 .flip input|addNewAttribute = <?php 
-$flip = Vvveb\get_setting('dicebear','flip', null);
+$flip = Vvveb\getSetting('dicebear','flip', null);
 if ($flip == '@@__value__@@') echo 'checked';
 ?>
 
 .style|deleteAllButFirst
 
 .style|before = <?php 
-$savedStyle = Vvveb\get_setting('dicebear','style', null);
+$savedStyle = Vvveb\getSetting('dicebear','style', null);
 
 foreach ($this->styles as $style) { ?>
 	

@@ -30,7 +30,7 @@ Author: givanz
 Version: 0.1
 Thumb: dicebear.svg
 Author url: https://www.vvveb.com
-Settings: /admin/?module=plugins/dicebear/settings
+Settings: /admin/index.php?module=plugins/dicebear/settings
 */
 
 use Vvveb\System\Event;
@@ -42,14 +42,14 @@ if (! defined('V_VERSION')) {
 define('DICEBAR_URL', 'https://api.dicebear.com/7.x/');
 
 class DiceBearPlugin {
-
-	protected function getDiceBear($email, $url = DICEBAR_URL, $width = 60, $styleName = 'bottts', $flip = 'false') {
-		$url = "$url$styleName/svg";
+	protected function getDiceBear($email, $url = DICEBAR_URL, $width = 60, $styleName = 'fun-emoji', $flip = 'false') {
+		$url  = "$url$styleName/svg";
 		$host = $_SERVER['HTTP_HOST'] ?? '';
-		$seed = md5(strtolower(trim( $host . $email)));
+		$seed = md5(strtolower(trim($host . $email)));
 		$url .= "?seed=$seed";
+
 		if ($flip == 'true') {
-			$url .= "&flip=true";
+			$url .= '&flip=true';
 		}
 
 		return $url;
@@ -57,14 +57,16 @@ class DiceBearPlugin {
 
 	function app() {
 		$types = ['comment', 'product_review', 'product_question'];
-		
+
 		$addDiceBear = function ($comments) use ($types) {
-			$options = \Vvveb\get_setting('dicebear', ['url', 'size', 'style', 'flip']);
-			
+			$options = \Vvveb\getSetting('dicebear', ['url', 'size', 'style', 'flip']);
+
 			$commentType = false;
+
 			foreach ($types as $type) {
 				if (isset($comments[$type])) {
 					$commentType = $type;
+
 					break;
 				}
 			}
@@ -76,18 +78,20 @@ class DiceBearPlugin {
 								$comment['email'],
 								$options['url'] ?? DICEBAR_URL,
 								$options['size'] ?? 60,
-								$options['style'] ?? 'bottts',
+								$options['style'] ?? 'fun-emoji',
 								$options['flip'] ?? 'false'
 							);
 					}
-					
-					if (isset($options['size'])) $comment['size'] = $options['size'];
+
+					if (isset($options['size'])) {
+						$comment['size'] = $options['size'];
+					}
 				}
 			}
 
 			return [$comments];
 		};
-		
+
 		Event::on('Vvveb\Component\Comments',  'results', __METHOD__ , $addDiceBear);
 		Event::on('Vvveb\Component\Reviews',   'results', __METHOD__ , $addDiceBear);
 		Event::on('Vvveb\Component\Questions', 'results', __METHOD__ , $addDiceBear);
