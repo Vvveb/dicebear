@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="../../favicon.ico">
+  <link rel="icon" href="/favicon.ico">
   <base href="">
 
   <title>Vvveb - DiceBear Plugin Settings</title>
@@ -39,18 +39,24 @@
       <div class="clearfix top-header" data-v-copy-from="index.html,.top-header">
       </div>
 
-      <form id="settings-form" action="" method="post" class="needs-validation" novalidate data-v-product>
+      <form id="settings-form" action="" method="post" class="settings" data-v-product>
         <input type="hidden" name="action" id="action" value="save">
+        <input type="hidden" name="csrf" data-v-csrf>
+		
         <div class="actions">
           <div class="title">
             <h4 class="text-muted mt-2">
-              <img src="../../plugins/dicebear/dicebear.svg">
+              <img src="/plugins/dicebear/dicebear.svg">
               <!-- 
               <span>DiceBear plugin</span>
               -->
             </h4>
           </div>
           <div class="btns">
+			<a href="{$this.adminPath}index.php?module=plugin/plugins" title="Plugins list"
+					class="btn btn-icon btn-outline-secondary me-2">
+						<i class="la la-arrow-left"></i><span>Plugins list</span>
+			</a>  
           <button type="submit" href="" class="btn btn-primary btn-icon ms-1" title="Save post">
             <i class="icon-create-outline"></i> <span>Save settings</span>
           </button>
@@ -125,12 +131,10 @@
     </div>
   </div>
 
-
-  <script src="js/jquery.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <script id="admin-js" type="module" src="../../js/admin.js"></script>
-  <script type="module" src="../../js/admin.js"></script>
+  <script id="admin-js" type="module" src="/js/admin.js"></script>
+  <script type="module" src="/js/admin.js"></script>
 
 </body>
 

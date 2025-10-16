@@ -73,8 +73,9 @@ class DiceBearPlugin {
 
 			if ($commentType) {
 				foreach ($comments[$commentType] as &$comment) {
-					if (! isset($comment['avatar']) || ! $comment['avatar']) {
-						$comment['avatar'] = $this->getDiceBear(
+					if ((! isset($comment['avatar']) || ! $comment['avatar']) &&
+						(isset($comment['email']) || ! $comment['email'])) {
+						$comment['avatar_url'] = $this->getDiceBear(
 								$comment['email'],
 								$options['url'] ?? DICEBAR_URL,
 								$options['size'] ?? 60,

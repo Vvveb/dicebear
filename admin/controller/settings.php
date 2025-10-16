@@ -40,7 +40,7 @@ class Settings extends Base {
 			CacheManager::delete();
 			$this->view->success[] = __('Settings saved!');
 		} else {
-			$this->view->validationErrors = $errors;
+			$this->view->errors = $errors;
 		}
 		
 		$this->index();
